@@ -1,0 +1,18 @@
+@import '../utils/_variables.scss';
+
+@font-face {
+  font-family: localRubik;
+  src: url($path-font-rubik);
+}
+
+@font-face {
+  font-family: localRubik;
+  src: url($path-font-rubik-italic);
+  font-style: italic;
+}
+
+html {
+  font-size: $font-size-medium;
+  font-family: localRubik, sans-serif;
+  font-weight: 400;
+}

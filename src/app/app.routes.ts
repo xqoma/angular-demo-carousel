@@ -1,3 +1,11 @@
 import {Routes} from '@angular/router';
 
-export const routes: Routes = [];
+import {LayoutComponent} from '@core';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+  }
+];
