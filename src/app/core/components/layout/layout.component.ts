@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 
-import {PageHeaderService} from '@adc/app/core/services/page-header.service';
+import {LayoutFacadeService} from '@adc/core';
 
 @Component({
   selector: 'adc-layout',
@@ -12,7 +12,7 @@ import {PageHeaderService} from '@adc/app/core/services/page-header.service';
   imports: [RouterOutlet],
 })
 export class LayoutComponent {
-  readonly #pageHeaderService = inject(PageHeaderService);
+  readonly #facade = inject(LayoutFacadeService);
 
-  protected header = computed(() => this.#pageHeaderService.title());
+  protected header = computed(() => this.#facade.title());
 }

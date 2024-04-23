@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
-import {DemoCarouselFacadeService} from '@adc/features/demo-carousel/services/demo-carousel-facade.service';
 import {CarouselComponent} from '@adc/shared';
+
+import {DemoCarouselFacadeService} from '../../services/demo-carousel-facade.service';
 
 @Component({
   selector: 'adc-demo-carousel',

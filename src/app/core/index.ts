@@ -3,5 +3,13 @@ import {APP} from './constants/app.constant';
 import {mockApiInterceptor} from './interceptors/mock-api.interceptor';
 import {provideAppTitleStrategy} from './providers/app-title-strategy.provider';
 import {CarouselApiService} from './services/carousel-api.service';
+import {LayoutFacadeService} from './services/layout-facade.service';
 
-export {APP, mockApiInterceptor, provideAppTitleStrategy, LayoutComponent, CarouselApiService};
+export {
+  APP,
+  mockApiInterceptor,
+  provideAppTitleStrategy,
+  LayoutComponent,
+  CarouselApiService,
+  LayoutFacadeService,
+};

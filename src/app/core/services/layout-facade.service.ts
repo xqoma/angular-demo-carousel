@@ -4,10 +4,10 @@ const MULTIPLE_INSTANCES_ERROR =
   'Trying to create multiple instances! This service must be singleton.';
 
 @Injectable({providedIn: 'root'})
-export class PageHeaderService {
+export class LayoutFacadeService {
   readonly title = signal<string | undefined>(undefined);
 
-  constructor(@Optional() @SkipSelf() parent?: PageHeaderService) {
+  constructor(@Optional() @SkipSelf() parent?: LayoutFacadeService) {
     if (parent) {
       throw Error(`[${this.constructor.name}]: ${MULTIPLE_INSTANCES_ERROR}`);
     }

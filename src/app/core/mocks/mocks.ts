@@ -1,4 +1,4 @@
-import {CAROUSEL_SLIDES_MOCK} from '@adc/app/core/mocks/carousel-slides.mock';
-import {Mock} from '@adc/app/core/models/mock.interface';
+import {Mock} from '../models/mock.interface';
+import {CAROUSEL_SLIDES_MOCK} from './carousel-slides.mock';
 
 export const MOCKS: Mock[] = [CAROUSEL_SLIDES_MOCK];
