@@ -1,19 +1,41 @@
-# AngularDemoCarousel
+# Angular Demo Carousel
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+Example of the Carousel Angular component.
+
+- Live demo: https://angular-demo-carousel.vercel.app/
+
+## Features
+
+- [Angular 17](https://v17.angular.io/)
+- [SCSS](https://sass-lang.com/)
+- No 3rd party libraries are used
+- Manual slide change
+- Auto slide change
+- Mouse and Swiping are supported
+
+## Bugs to fix
+
+- The button on a slide isn't clickable with Touch event
+
+## Things that could be improved
+
+### Merge mouse and touch events to get common "Drag" event api
+
+Possible solutions
+
+- `directive`
+- `service`
+
+Benefits
+
+- reusable solution
+- simplified way to handle "Drag" events
+- less feature (carousel) code
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
