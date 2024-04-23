@@ -1,0 +1,10 @@
+@import 'variables';
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function px-to-rem($px-value) {
+  $remValue: ($px-value / strip-unit($font-size-medium)) + rem;
+  @return $remValue;
+}

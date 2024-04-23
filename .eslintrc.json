@@ -1,0 +1,70 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "parserOptions": {
+        "ecmaVersion": "latest"
+      },
+      "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+      },
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+      "rules": {
+        "curly": ["error", "multi-line", "consistent"],
+        "no-empty-function": "off"
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      },
+      "plugins": ["@typescript-eslint", "rxjs"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "curly": ["error", "multi-line", "consistent"],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "rxjs/finnish": "error",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "adc",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "adc",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

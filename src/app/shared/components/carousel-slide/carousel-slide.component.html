@@ -1,0 +1,19 @@
+<section class="container" [ngStyle]="{'background-image': 'url(' + backgroundImage() + ')'}">
+  <article class="content">
+    @if (frontImage()) {
+      <div class="front-image" [ngStyle]="{'background-image': 'url(' + frontImage() + ')'}"></div>
+    }
+
+    @if (title()) {
+      <h2 class="title">{{ title() }}</h2>
+    }
+
+    @if (text()) {
+      <p class="text" [innerHTML]="text()"></p>
+    }
+
+    @if (link()) {
+      <a class="button" rel="bookmark" [href]="link()?.href">{{ link()?.text }}</a>
+    }
+  </article>
+</section>

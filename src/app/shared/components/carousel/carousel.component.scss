@@ -1,0 +1,31 @@
+@import 'mixins';
+@import 'functions';
+
+$height: px-to-rem(420);
+$slide-shifting-speed: 0.2s;
+
+:host {
+  .container {
+    height: $height;
+    overflow: hidden;
+    position: relative;
+
+    .slide-list {
+      @include reset-list;
+      display: flex;
+      height: inherit;
+      justify-content: flex-start;
+      left: -100%;
+      position: relative;
+
+      &.shifting {
+        transition: left $slide-shifting-speed ease-out;
+      }
+
+      &__item {
+        flex-shrink: 0;
+        width: 100%;
+      }
+    }
+  }
+}

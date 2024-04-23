@@ -1,7 +1,10 @@
-$path-fonts: '@assets/fonts';
+$path-fonts: '@adc/assets/fonts';
 $path-font-rubik: '#{$path-fonts}/Rubik-VariableFont_wght.ttf';
 $path-font-rubik-italic: '#{$path-fonts}/Rubik-Italic-VariableFont_wght.ttf';
 
-$font-size-small: 14px;
-$font-size-medium: 16px;
-$font-size-large: 20px;
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$font-size-large: 26px;
+
+$color-white: #fff;
+$color-accent: #fced73;

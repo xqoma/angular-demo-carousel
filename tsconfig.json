@@ -23,11 +23,12 @@
       "dom"
     ],
     "paths": {
-      "@assets/*": ["./assets/*"],
-      "@styles/*": ["./styles/*"],
-      "@core": ["./app/core"],
-      "@shared": ["./app/shared"],
-      "@features/*": ["./app/features/*"]
+      "@adc/app/*": ["./app/*"],
+      "@adc/core": ["./app/core"],
+      "@adc/shared": ["./app/shared"],
+      "@adc/assets/*": ["./assets/*"],
+      "@adc/styles/*": ["./styles/*"],
+      "@adc/features/*": ["./app/features/*"]
     }
   },
   "angularCompilerOptions": {
