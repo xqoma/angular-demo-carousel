@@ -1,0 +1,88 @@
+@import 'variables';
+@import 'functions';
+
+$text-color: $color-white;
+$padding-px: 20;
+
+$content-max-width-px: 560;
+
+$front-image-height-px: 195;
+
+$title-font-size-px: 26;
+$title-font-weight: 700;
+$title-margin-top-px: 10;
+
+$text-margin-top-px: 5;
+
+$button-font-weight: 500;
+$button-height-px: 35;
+$button-min-width-px: 150;
+$button-border-width-px: 2;
+$button-margin-top-px: 15;
+$button-hover-color: $color-accent;
+
+:host {
+  color: $text-color;
+  text-align: center;
+
+  .container {
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: px-to-rem($padding-px);
+
+    .content {
+      max-width: 560px;
+
+      * {
+        margin: 0;
+      }
+
+      .front-image {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: px-to-rem($front-image-height-px);
+      }
+
+      .title {
+        font-size: px-to-rem($title-font-size-px);
+        font-weight: $title-font-weight;
+
+        &:not(:first-child) {
+          margin-top: px-to-rem($title-margin-top-px);
+        }
+      }
+
+      .text {
+        &:not(:first-child) {
+          margin-top: px-to-rem($text-margin-top-px);
+        }
+      }
+
+      .button {
+        border: px-to-rem($button-border-width-px) solid;
+        border-radius: px-to-rem($button-height-px);
+        color: inherit;
+        display: inline-block;
+        font-weight: $button-font-weight;
+        height: px-to-rem($button-height-px);
+        line-height: px-to-rem($button-height-px - ($button-border-width-px * 2));
+        min-width: px-to-rem($button-min-width-px);
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+          color: $button-hover-color;
+        }
+
+        &:not(:first-child) {
+          margin-top: px-to-rem($button-margin-top-px);
+        }
+      }
+    }
+  }
+}

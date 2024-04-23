@@ -1,7 +1,4 @@
-import {NgStyle} from '@angular/common';
-import {ChangeDetectionStrategy, Component, input} from '@angular/core';
-
-import {CarouselSlideLink} from '@adc/shared';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'adc-carousel-slide',
@@ -9,12 +6,5 @@ import {CarouselSlideLink} from '@adc/shared';
   styleUrl: './carousel-slide.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgStyle],
 })
-export class CarouselSlideComponent {
-  backgroundImage = input.required<string>();
-  frontImage = input<string>();
-  title = input<string>();
-  text = input<string>();
-  link = input<CarouselSlideLink>();
-}
+export class CarouselSlideComponent {}

@@ -1,9 +1,9 @@
-import {CarouselSlide} from '@adc/shared';
+import {Banner} from '@adc/shared';
 
 import {TIME} from '../constants/time.constant';
 import {Mock} from '../models/mock.interface';
 
-export const CAROUSEL_SLIDES_MOCK: Mock<CarouselSlide[]> = {
+export const CAROUSEL_SLIDES_MOCK: Mock<Banner[]> = {
   url: 'api/v1/carousel/demo',
   method: 'GET',
   delay: TIME.SEC * 2,

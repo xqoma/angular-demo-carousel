@@ -1,4 +1,3 @@
-@import 'mixins';
 @import 'functions';
 
 $height: px-to-rem(420);
@@ -10,8 +9,7 @@ $slide-shifting-speed: 0.2s;
     overflow: hidden;
     position: relative;
 
-    .slide-list {
-      @include reset-list;
+    .carousel {
       display: flex;
       height: inherit;
       justify-content: flex-start;
@@ -20,11 +18,6 @@ $slide-shifting-speed: 0.2s;
 
       &.shifting {
         transition: left $slide-shifting-speed ease-out;
-      }
-
-      &__item {
-        flex-shrink: 0;
-        width: 100%;
       }
     }
   }

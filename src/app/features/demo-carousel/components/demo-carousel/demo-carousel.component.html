@@ -1,5 +1,18 @@
 @if (slides().length) {
-  <adc-carousel [slides]="slides()"></adc-carousel>
+  <adc-carousel [autoShift]="true" [autoShiftIntervalSec]="10" [thresholdPercentage]="20">
+    @for (slide of slides(); track slide) {
+      <adc-carousel-slide>
+        <adc-banner
+          [backgroundImage]="slide.backgroundImage"
+          [title]="slide.title"
+          [text]="slide.text"
+          [frontImage]="slide.frontImage"
+          [link]="slide.link"
+        ></adc-banner>
+      </adc-carousel-slide>
+    }
+  </adc-carousel>
 } @else {
+  <!-- TODO: Don't use pixel units -->
   <div class="loader-block" style="height: 400px"></div>
 }

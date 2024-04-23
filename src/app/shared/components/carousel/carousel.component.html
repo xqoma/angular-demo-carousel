@@ -1,15 +1,5 @@
 <div class="container">
-  <ul #carouselElement class="slide-list">
-    @for (slide of infiniteSlides(); track slide) {
-      <li #slideElement class="slide-list__item">
-        <adc-carousel-slide
-          [backgroundImage]="slide.backgroundImage"
-          [title]="slide.title"
-          [text]="slide.text"
-          [frontImage]="slide.frontImage"
-          [link]="slide.link"
-        ></adc-carousel-slide>
-      </li>
-    }
-  </ul>
+  <div #carouselElement class="carousel">
+    <ng-content></ng-content>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
-import {CarouselComponent} from '@adc/shared';
+import {BannerComponent, CarouselComponent, CarouselSlideComponent} from '@adc/shared';
 
 import {DemoCarouselFacadeService} from '../../services/demo-carousel-facade.service';
 
@@ -9,7 +9,7 @@ import {DemoCarouselFacadeService} from '../../services/demo-carousel-facade.ser
   templateUrl: './demo-carousel.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CarouselComponent],
+  imports: [CarouselComponent, BannerComponent, CarouselSlideComponent],
 })
 export class DemoCarouselComponent {
   readonly #facade = inject(DemoCarouselFacadeService);

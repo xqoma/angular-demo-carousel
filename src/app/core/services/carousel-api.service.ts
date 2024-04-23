@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable, inject} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import {CarouselSlide} from '@adc/shared';
+import {Banner} from '@adc/shared';
 
 // TODO: Move to environment variables
 const API_URL = 'api/v1';
@@ -16,7 +16,7 @@ const API_ROUTES = {
 export class CarouselApiService {
   readonly #http = inject(HttpClient);
 
-  fetchDemoSlides$(): Observable<CarouselSlide[]> {
-    return this.#http.get<CarouselSlide[]>(API_ROUTES.fetchDemoSlides());
+  fetchDemoSlides$(): Observable<Banner[]> {
+    return this.#http.get<Banner[]>(API_ROUTES.fetchDemoSlides());
   }
 }

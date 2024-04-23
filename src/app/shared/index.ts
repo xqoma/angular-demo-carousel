@@ -1,6 +1,7 @@
+import {BannerComponent} from './components/banner/banner.component';
 import {CarouselSlideComponent} from './components/carousel-slide/carousel-slide.component';
 import {CarouselComponent} from './components/carousel/carousel.component';
-import {CarouselSlideLink} from './models/carousel-slide-link.interface';
-import {CarouselSlide} from './models/carousel-slide.interface';
+import {BannerLink} from './models/banner-link.interface';
+import {Banner} from './models/banner.interface';
 
-export {CarouselSlideComponent, CarouselComponent, CarouselSlide, CarouselSlideLink};
+export {CarouselSlideComponent, CarouselComponent, BannerComponent, Banner, BannerLink};
