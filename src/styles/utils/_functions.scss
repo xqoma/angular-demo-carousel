@@ -1,10 +1,12 @@
+@use 'sass:math';
+
 @import 'variables';
 
 @function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
+  @return math.div($num, $num * 0 + 1);
 }
 
 @function px-to-rem($px-value) {
-  $remValue: ($px-value / strip-unit($font-size-medium)) + rem;
+  $remValue: math.div($px-value, strip-unit($font-size-medium)) + rem;
   @return $remValue;
 }
