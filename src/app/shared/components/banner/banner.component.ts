@@ -19,10 +19,10 @@ export class BannerComponent {
   title = input<string>();
   text = input<string>();
   link = input<BannerLink>();
-  heightPixels = input<number>();
+  minHeightPixels = input<number>();
 
-  protected heightRem = computed(() => {
-    const pixels = this.heightPixels();
+  protected minHeightRem = computed(() => {
+    const pixels = this.minHeightPixels();
     return pixels ? pixelsToRem(pixels) : undefined;
   });
 }
