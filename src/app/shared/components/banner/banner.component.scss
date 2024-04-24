@@ -4,7 +4,7 @@
 $text-color: $color-white;
 $padding-px: 20;
 
-$content-max-width-px: 560;
+$content-max-width-px: 370;
 
 $front-image-height-px: 195;
 
@@ -29,25 +29,28 @@ $button-hover-color: $color-accent;
 
   .container {
     align-items: center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     height: inherit;
     justify-content: center;
     padding: px-to-rem($padding-px);
+
+    .front-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: px-to-rem($front-image-height-px);
+      width: 100%;
+    }
 
     .content {
       max-width: px-to-rem($content-max-width-px);
 
       * {
         margin: 0;
-      }
-
-      .front-image {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        height: px-to-rem($front-image-height-px);
       }
 
       .title {

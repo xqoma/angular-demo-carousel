@@ -1,9 +1,9 @@
 <section class="container" [style.background-image]="'url(' + backgroundImage() + ')'">
-  <article class="content">
-    @if (frontImage()) {
-      <div class="front-image" [style.background-image]="'url(' + frontImage() + ')'"></div>
-    }
+  @if (frontImage()) {
+    <div class="front-image" [style.background-image]="'url(' + frontImage() + ')'"></div>
+  }
 
+  <article class="content">
     @if (title()) {
       <h2 class="title">{{ title() }}</h2>
     }
