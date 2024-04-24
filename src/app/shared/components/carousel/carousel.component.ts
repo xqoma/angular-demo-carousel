@@ -18,7 +18,7 @@ import {
   untracked,
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Subscription, filter, fromEvent, interval} from 'rxjs';
+import {Subscription, delay, filter, fromEvent, interval} from 'rxjs';
 
 import {CarouselShiftDirection, CarouselSlideComponent} from '@adc/shared';
 
@@ -26,6 +26,8 @@ const DEFAULT_AUTO_SHIFT_ENABLED = true;
 const DEFAULT_AUTO_SHIFT_DIRECTION: CarouselShiftDirection = 'left';
 const DEFAULT_AUTO_SHIFT_INTERVAL_SEC = 10;
 const DEFAULT_THRESHOLD_PERCENTAGE = 25;
+// Fixes problem with slide controls manipulating
+const TOUCH_EVENTS_DELAY_MS = 5;
 
 @Component({
   selector: 'adc-carousel',
@@ -124,11 +126,11 @@ export class CarouselComponent {
         .subscribe(this.#handleMouseUpEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchmove')
-        .pipe(takeUntilDestroyed())
+        .pipe(takeUntilDestroyed(), delay(TOUCH_EVENTS_DELAY_MS))
         .subscribe(this.#handleTouchMoveEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchend')
-        .pipe(takeUntilDestroyed())
+        .pipe(takeUntilDestroyed(), delay(TOUCH_EVENTS_DELAY_MS))
         .subscribe(this.#handleTouchEndEvent.bind(this));
 
       fromEvent<TransitionEvent>(this.#carouselElement(), 'transitionend')
