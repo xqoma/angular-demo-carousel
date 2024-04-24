@@ -9,11 +9,12 @@ Example of the Carousel Angular component.
 - [Angular 17](https://v17.angular.io/)
 - [SCSS](https://sass-lang.com/)
 - No 3rd party libraries are used
+- Slide can contain any template, not only pictures
 - Manual slide change
 - Auto slide change
 - Mouse and Swiping are supported
 - Doesn't trigger any change detections
-- Slide can contain any template, not only pictures
+- Reactive API (component's inputs)
 
 ## Bugs to fix
 

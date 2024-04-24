@@ -1,3 +1,8 @@
+@import 'functions';
+@import 'variables';
+
+$footer-link-font-size: px-to-rem($font-size-small-px);
+
 :host {
   .container {
     max-width: 100%;
@@ -11,6 +16,20 @@
 
       .header {
         text-align: center;
+
+        h1 {
+          margin: 0;
+          padding: px-to-rem(20) 0;
+        }
+      }
+
+      .footer {
+        padding: px-to-rem(20) 0;
+        text-align: center;
+
+        .link {
+          font-size: $footer-link-font-size;
+        }
       }
     }
   }
