@@ -18,7 +18,7 @@ import {
   untracked,
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Subscription, delay, filter, fromEvent, interval, throttleTime} from 'rxjs';
+import {Subscription, delay, filter, fromEvent, interval, throttle} from 'rxjs';
 
 import {CarouselShiftDirection, CarouselSlideComponent} from '@adc/shared';
 
@@ -26,7 +26,7 @@ const DEFAULT_AUTO_SHIFT_ENABLED = true;
 const DEFAULT_AUTO_SHIFT_DIRECTION: CarouselShiftDirection = 'left';
 const DEFAULT_AUTO_SHIFT_INTERVAL_SEC = 10;
 const DEFAULT_THRESHOLD_PERCENTAGE = 25;
-const SHIFT_FPS = 90;
+const DEFAULT_DRAG_FPS = 90;
 // Fixes problem with slide controls manipulating
 const TOUCH_EVENTS_DELAY_MS = 5;
 
@@ -42,6 +42,7 @@ export class CarouselComponent {
   autoShift = input<boolean>(DEFAULT_AUTO_SHIFT_ENABLED);
   autoShiftDirection = input<CarouselShiftDirection>(DEFAULT_AUTO_SHIFT_DIRECTION);
   autoShiftIntervalSec = input<number>(DEFAULT_AUTO_SHIFT_INTERVAL_SEC);
+  dragFps = input<number>(DEFAULT_DRAG_FPS);
   thresholdPercentage = input<number>(DEFAULT_THRESHOLD_PERCENTAGE);
 
   readonly #injector = inject(EnvironmentInjector);
@@ -116,7 +117,7 @@ export class CarouselComponent {
         .pipe(
           takeUntilDestroyed(),
           filter(() => this.#mouseDown()),
-          throttleTime(1000 / SHIFT_FPS),
+          throttle(() => interval(1000 / this.dragFps())),
         )
         .subscribe(this.#handleMouseMoveEvent.bind(this));
 
@@ -128,7 +129,11 @@ export class CarouselComponent {
         .subscribe(this.#handleMouseUpEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchmove')
-        .pipe(takeUntilDestroyed(), throttleTime(1000 / SHIFT_FPS), delay(TOUCH_EVENTS_DELAY_MS))
+        .pipe(
+          takeUntilDestroyed(),
+          throttle(() => interval(1000 / this.dragFps())),
+          delay(TOUCH_EVENTS_DELAY_MS),
+        )
         .subscribe(this.#handleTouchMoveEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchend')

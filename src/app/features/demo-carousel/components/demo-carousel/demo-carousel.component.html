@@ -3,6 +3,7 @@
     [autoShift]="autoShift()"
     [autoShiftDirection]="autoShiftDirection()"
     [autoShiftIntervalSec]="autoShiftIntervalSec()"
+    [dragFps]="dragFps()"
     [thresholdPercentage]="thresholdPercentage()"
   >
     @for (banner of banners(); track banner) {
@@ -48,6 +49,11 @@
       [min]="0"
       [formControl]="thresholdPercentageControl"
     />
+  </p>
+
+  <p>
+    <label for="dragFps">Dragging FPS</label>
+    <input id="dragFps" type="number" [min]="0" [formControl]="dragFpsControl" />
   </p>
 
   <fieldset>
