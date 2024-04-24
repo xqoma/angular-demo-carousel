@@ -7,7 +7,7 @@ $slide-shifting-speed: 0.2s;
 
     .carousel {
       display: flex;
-      flex-direction: row;
+      height: inherit;
       justify-content: flex-start;
       left: -100%;
       position: relative;

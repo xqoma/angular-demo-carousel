@@ -23,6 +23,8 @@ $button-hover-color: $color-accent;
 
 :host {
   color: $text-color;
+  display: block;
+  height: inherit;
   text-align: center;
 
   .container {
@@ -30,6 +32,7 @@ $button-hover-color: $color-accent;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    height: inherit;
     justify-content: center;
     padding: px-to-rem($padding-px);
 

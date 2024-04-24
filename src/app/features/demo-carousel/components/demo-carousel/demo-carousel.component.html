@@ -5,6 +5,7 @@
     [autoShiftIntervalSec]="autoShiftIntervalSec()"
     [dragFps]="dragFps()"
     [thresholdPercentage]="thresholdPercentage()"
+    [heightPixels]="bannerHeightPixels()"
   >
     @for (banner of banners(); track banner) {
       <adc-carousel-slide>
@@ -14,7 +15,6 @@
           [text]="banner.text"
           [frontImage]="banner.frontImage"
           [link]="banner.link"
-          [minHeightPixels]="bannerHeightPixels()"
         ></adc-banner>
       </adc-carousel-slide>
     }

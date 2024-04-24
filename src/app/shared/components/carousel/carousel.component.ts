@@ -20,6 +20,7 @@ import {
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Subscription, delay, filter, fromEvent, interval, throttle} from 'rxjs';
 
+import {pixelsToRem} from '@adc/core';
 import {CarouselShiftDirection, CarouselSlideComponent} from '@adc/shared';
 
 const DEFAULT_AUTO_SHIFT_ENABLED = true;
@@ -44,10 +45,16 @@ export class CarouselComponent {
   autoShiftIntervalSec = input<number>(DEFAULT_AUTO_SHIFT_INTERVAL_SEC);
   dragFps = input<number>(DEFAULT_DRAG_FPS);
   thresholdPercentage = input<number>(DEFAULT_THRESHOLD_PERCENTAGE);
+  heightPixels = input<number>();
 
   readonly #injector = inject(EnvironmentInjector);
   readonly #document = inject(DOCUMENT);
   readonly #renderer = inject(Renderer2);
+
+  protected heightRem = computed(() => {
+    const pixels = this.heightPixels();
+    return pixels ? pixelsToRem(pixels) : undefined;
+  });
 
   @ViewChild('carouselElement')
   protected set _carouselElement(carousel: ElementRef<HTMLElement>) {

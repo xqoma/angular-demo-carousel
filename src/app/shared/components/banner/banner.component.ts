@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 
-import {pixelsToRem} from '@adc/core';
 import {BannerLink} from '@adc/shared';
 
 @Component({
@@ -16,10 +15,4 @@ export class BannerComponent {
   title = input<string>();
   text = input<string>();
   link = input<BannerLink>();
-  minHeightPixels = input<number>();
-
-  protected minHeightRem = computed(() => {
-    const pixels = this.minHeightPixels();
-    return pixels ? pixelsToRem(pixels) : undefined;
-  });
 }
