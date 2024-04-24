@@ -72,6 +72,7 @@ $button-hover-color: $color-accent;
         line-height: px-to-rem($button-height-px - ($button-border-width-px * 2));
         min-width: px-to-rem($button-min-width-px);
         text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
 
         &:hover,
         &:active {
