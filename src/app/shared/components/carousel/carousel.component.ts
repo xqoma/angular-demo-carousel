@@ -62,8 +62,8 @@ export class CarouselComponent {
   #threshold = computed(() => this.#slideWidth() * (this.thresholdPercentage() / 100));
 
   #mouseDown = signal(false);
-  #touchStarted = signal(false);
-  #dragStarted = computed(() => this.#mouseDown() || this.#touchStarted());
+  #touchMoveStarted = signal(false);
+  #dragStarted = computed(() => this.#mouseDown() || this.#touchMoveStarted());
   #shiftAllowed = signal(true);
   #autoShiftAllowed = computed(() => this.autoShift() && !this.#dragStarted());
 
@@ -122,10 +122,6 @@ export class CarouselComponent {
           filter(() => this.#mouseDown()),
         )
         .subscribe(this.#handleMouseUpEvent.bind(this));
-
-      fromEvent<TouchEvent>(this.#carouselElement(), 'touchstart')
-        .pipe(takeUntilDestroyed())
-        .subscribe(this.#handleTouchStartEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchmove')
         .pipe(takeUntilDestroyed())
@@ -217,15 +213,19 @@ export class CarouselComponent {
     this.#handleDragEnd();
   }
 
-  #handleTouchStartEvent(event: TouchEvent): void {
-    this.#stopEvent(event);
-    this.#touchStarted.set(true);
+  #handleTouchMoveStartEvent(event: TouchEvent): void {
+    this.#touchMoveStarted.set(true);
     this.#carouselPreviousPosition.set(this.#carouselElement().offsetLeft);
     this.#dragPosition.set(event.touches[0].clientX);
   }
 
   #handleTouchMoveEvent(event: TouchEvent): void {
     this.#stopEvent(event);
+
+    if (!this.#touchMoveStarted()) {
+      this.#handleTouchMoveStartEvent(event);
+    }
+
     const offset = this.#dragPosition() - event.touches[0].clientX;
     this.#dragPosition.set(event.touches[0].clientX);
     this.#carouselElement().style.left = `${this.#carouselElement().offsetLeft - offset}px`;
@@ -233,7 +233,7 @@ export class CarouselComponent {
 
   #handleTouchEndEvent(event: TouchEvent): void {
     this.#stopEvent(event);
-    this.#touchStarted.set(false);
+    this.#touchMoveStarted.set(false);
     this.#handleDragEnd();
   }
 

@@ -16,10 +16,6 @@ Example of the Carousel Angular component.
 - Doesn't trigger any change detections
 - Reactive API (component's inputs)
 
-## Bugs to fix
-
-- The button on a slide isn't clickable with Touch event
-
 ## Things that could be improved
 
 ### Merge mouse and touch events to get common "Drag" event api
