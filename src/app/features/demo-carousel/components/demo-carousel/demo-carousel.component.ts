@@ -24,7 +24,7 @@ const DEFAULT_THRESHOLD_PERCENTAGE = 20;
   styleUrl: './demo-carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CarouselComponent, BannerComponent, CarouselSlideComponent, ReactiveFormsModule],
+  imports: [CarouselComponent, CarouselSlideComponent, BannerComponent, ReactiveFormsModule],
 })
 export class DemoCarouselComponent {
   readonly #facade = inject(DemoCarouselFacadeService);

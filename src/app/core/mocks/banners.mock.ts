@@ -1,11 +1,11 @@
+import {environment} from '@adc/envs/environment';
 import {Banner} from '@adc/shared';
 
 import {TIME} from '../constants/time.constant';
 import {Mock} from '../models/mock.interface';
 
 export const BANNERS_MOCK: Mock<Banner[]> = {
-  // TODO: Move `api/v1` to env variables
-  url: 'api/v1/banners/demo',
+  url: `${environment.apiUrl}/banners/demo`,
   method: 'GET',
   delay: TIME.SEC * 2,
   body: [

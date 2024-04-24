@@ -29,7 +29,8 @@
       "@adc/shared": ["./app/shared"],
       "@adc/assets/*": ["./assets/*"],
       "@adc/styles/*": ["./styles/*"],
-      "@adc/features/*": ["./app/features/*"]
+      "@adc/features/*": ["./app/features/*"],
+      "@adc/envs/*": ["./environments/*"],
     }
   },
   "angularCompilerOptions": {
