@@ -1,5 +1,3 @@
-@import 'functions';
-
 $slide-shifting-speed: 0.2s;
 
 :host {
@@ -9,6 +7,7 @@ $slide-shifting-speed: 0.2s;
 
     .carousel {
       display: flex;
+      flex-direction: row;
       justify-content: flex-start;
       left: -100%;
       position: relative;
@@ -18,4 +17,8 @@ $slide-shifting-speed: 0.2s;
       }
     }
   }
+}
+
+body:has(.shifting) {
+  overflow-y: hidden;
 }

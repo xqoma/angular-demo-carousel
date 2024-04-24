@@ -18,7 +18,7 @@ import {
   untracked,
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Subscription, delay, filter, fromEvent, interval} from 'rxjs';
+import {Subscription, delay, filter, fromEvent, interval, throttleTime} from 'rxjs';
 
 import {CarouselShiftDirection, CarouselSlideComponent} from '@adc/shared';
 
@@ -26,6 +26,7 @@ const DEFAULT_AUTO_SHIFT_ENABLED = true;
 const DEFAULT_AUTO_SHIFT_DIRECTION: CarouselShiftDirection = 'left';
 const DEFAULT_AUTO_SHIFT_INTERVAL_SEC = 10;
 const DEFAULT_THRESHOLD_PERCENTAGE = 25;
+const SHIFT_FPS = 90;
 // Fixes problem with slide controls manipulating
 const TOUCH_EVENTS_DELAY_MS = 5;
 
@@ -115,6 +116,7 @@ export class CarouselComponent {
         .pipe(
           takeUntilDestroyed(),
           filter(() => this.#mouseDown()),
+          throttleTime(1000 / SHIFT_FPS),
         )
         .subscribe(this.#handleMouseMoveEvent.bind(this));
 
@@ -126,7 +128,7 @@ export class CarouselComponent {
         .subscribe(this.#handleMouseUpEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchmove')
-        .pipe(takeUntilDestroyed(), delay(TOUCH_EVENTS_DELAY_MS))
+        .pipe(takeUntilDestroyed(), throttleTime(1000 / SHIFT_FPS), delay(TOUCH_EVENTS_DELAY_MS))
         .subscribe(this.#handleTouchMoveEvent.bind(this));
 
       fromEvent<TouchEvent>(this.#carouselElement(), 'touchend')
@@ -216,6 +218,7 @@ export class CarouselComponent {
   }
 
   #handleTouchMoveStartEvent(event: TouchEvent): void {
+    document.body.style.overflow = 'hidden';
     this.#touchMoveStarted.set(true);
     this.#carouselPreviousPosition.set(this.#carouselElement().offsetLeft);
     this.#dragPosition.set(event.touches[0].clientX);
@@ -237,6 +240,7 @@ export class CarouselComponent {
     this.#stopEvent(event);
     this.#touchMoveStarted.set(false);
     this.#handleDragEnd();
+    document.body.style.overflow = 'auto';
   }
 
   #handleTransitionEndEvent(event: TransitionEvent): void {
