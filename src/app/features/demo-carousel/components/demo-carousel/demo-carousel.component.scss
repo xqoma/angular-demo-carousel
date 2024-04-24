@@ -1,0 +1,9 @@
+@import 'functions';
+
+$carousel-config-margin-top: px-to-rem(30);
+
+:host {
+  .carousel-config {
+    margin-top: $carousel-config-margin-top;
+  }
+}

@@ -1,7 +1,11 @@
-<section class="container" [ngStyle]="{'background-image': 'url(' + backgroundImage() + ')'}">
+<section
+  class="container"
+  [style.background-image]="'url(' + backgroundImage() + ')'"
+  [style.height]="heightRem() + 'rem'"
+>
   <article class="content">
     @if (frontImage()) {
-      <div class="front-image" [ngStyle]="{'background-image': 'url(' + frontImage() + ')'}"></div>
+      <div class="front-image" [style.background-image]="'url(' + frontImage() + ')'"></div>
     }
 
     @if (title()) {

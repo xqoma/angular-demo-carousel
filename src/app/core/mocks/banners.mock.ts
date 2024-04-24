@@ -3,8 +3,9 @@ import {Banner} from '@adc/shared';
 import {TIME} from '../constants/time.constant';
 import {Mock} from '../models/mock.interface';
 
-export const CAROUSEL_SLIDES_MOCK: Mock<Banner[]> = {
-  url: 'api/v1/carousel/demo',
+export const BANNERS_MOCK: Mock<Banner[]> = {
+  // TODO: Move `api/v1` to env variables
+  url: 'api/v1/banners/demo',
   method: 'GET',
   delay: TIME.SEC * 2,
   body: [

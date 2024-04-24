@@ -1,17 +1,14 @@
 @import 'functions';
 
-$height: px-to-rem(420);
 $slide-shifting-speed: 0.2s;
 
 :host {
   .container {
-    height: $height;
     overflow: hidden;
     position: relative;
 
     .carousel {
       display: flex;
-      height: inherit;
       justify-content: flex-start;
       left: -100%;
       position: relative;

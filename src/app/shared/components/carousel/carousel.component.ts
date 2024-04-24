@@ -18,10 +18,12 @@ import {
   untracked,
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {filter, fromEvent, interval} from 'rxjs';
+import {Subscription, filter, fromEvent, interval} from 'rxjs';
 
-import {CarouselSlideComponent} from '@adc/shared';
+import {CarouselShiftDirection, CarouselSlideComponent} from '@adc/shared';
 
+const DEFAULT_AUTO_SHIFT_ENABLED = true;
+const DEFAULT_AUTO_SHIFT_DIRECTION: CarouselShiftDirection = 'left';
 const DEFAULT_AUTO_SHIFT_INTERVAL_SEC = 10;
 const DEFAULT_THRESHOLD_PERCENTAGE = 25;
 
@@ -34,7 +36,8 @@ const DEFAULT_THRESHOLD_PERCENTAGE = 25;
   imports: [CarouselSlideComponent],
 })
 export class CarouselComponent {
-  autoShift = input<boolean>(true);
+  autoShift = input<boolean>(DEFAULT_AUTO_SHIFT_ENABLED);
+  autoShiftDirection = input<CarouselShiftDirection>(DEFAULT_AUTO_SHIFT_DIRECTION);
   autoShiftIntervalSec = input<number>(DEFAULT_AUTO_SHIFT_INTERVAL_SEC);
   thresholdPercentage = input<number>(DEFAULT_THRESHOLD_PERCENTAGE);
 
@@ -68,6 +71,8 @@ export class CarouselComponent {
   #dragPosition = signal(0);
   #slideIndex = signal(0);
 
+  #autoShiftIntervalSubscription: Subscription;
+
   constructor() {
     effect(() => {
       if (!this.#slideElements().length) return;
@@ -76,10 +81,13 @@ export class CarouselComponent {
 
     effect(() => {
       if (!this.#carouselElement()) return;
-      untracked(() => {
-        this.#initEventListeners();
-        this.#initAutoShift();
-      });
+      untracked(() => this.#initEventListeners());
+    });
+
+    effect(() => {
+      if (!this.#carouselElement() && !this.#slideElements().length) return;
+      this.autoShiftIntervalSec();
+      untracked(() => this.#initAutoShift());
     });
   }
 
@@ -134,13 +142,15 @@ export class CarouselComponent {
   }
 
   #initAutoShift(): void {
+    this.#autoShiftIntervalSubscription?.unsubscribe();
+
     runInInjectionContext(this.#injector, () => {
-      interval(this.autoShiftIntervalSec() * 1000)
+      this.#autoShiftIntervalSubscription = interval(this.autoShiftIntervalSec() * 1000)
         .pipe(
           takeUntilDestroyed(),
           filter(() => this.#autoShiftAllowed()),
         )
-        .subscribe(() => this.#shiftSlide('left'));
+        .subscribe(() => this.#shiftSlide(this.autoShiftDirection()));
     });
   }
 

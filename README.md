@@ -12,6 +12,8 @@ Example of the Carousel Angular component.
 - Manual slide change
 - Auto slide change
 - Mouse and Swiping are supported
+- Doesn't trigger any change detections
+- Slide can contain any template, not only pictures
 
 ## Bugs to fix
 

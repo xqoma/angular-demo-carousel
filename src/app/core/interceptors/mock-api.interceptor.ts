@@ -7,7 +7,8 @@ export const mockApiInterceptor: HttpInterceptorFn = (request, next) => {
   const mock = MOCKS.find(({url, method}) => url === request.url && method === request.method);
 
   if (mock) {
-    return of(new HttpResponse({status: 200, body: mock.body})).pipe(delay(mock.delay ?? 0));
+    const response = new HttpResponse({status: 200, body: mock.body});
+    return of(response).pipe(delay(mock.delay ?? 0));
   }
 
   return next(request);

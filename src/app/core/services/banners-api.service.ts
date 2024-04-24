@@ -7,16 +7,16 @@ import {Banner} from '@adc/shared';
 // TODO: Move to environment variables
 const API_URL = 'api/v1';
 
-const API_BASE = `${API_URL}/carousel`;
+const API_BASE = `${API_URL}/banners`;
 const API_ROUTES = {
-  fetchDemoSlides: (): string => `${API_BASE}/demo`,
+  fetchDemoBanners: (): string => `${API_BASE}/demo`,
 };
 
 @Injectable({providedIn: 'root'})
-export class CarouselApiService {
+export class BannersApiService {
   readonly #http = inject(HttpClient);
 
-  fetchDemoSlides$(): Observable<Banner[]> {
-    return this.#http.get<Banner[]>(API_ROUTES.fetchDemoSlides());
+  fetchDemoBanners$(): Observable<Banner[]> {
+    return this.#http.get<Banner[]>(API_ROUTES.fetchDemoBanners());
   }
 }

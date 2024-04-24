@@ -8,7 +8,7 @@ $content-max-width-px: 560;
 
 $front-image-height-px: 195;
 
-$title-font-size-px: 26;
+$title-font-size-px: $font-size-large-px;
 $title-font-weight: 700;
 $title-margin-top-px: 10;
 
@@ -30,12 +30,11 @@ $button-hover-color: $color-accent;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    height: 100%;
     justify-content: center;
     padding: px-to-rem($padding-px);
 
     .content {
-      max-width: 560px;
+      max-width: px-to-rem($content-max-width-px);
 
       * {
         margin: 0;

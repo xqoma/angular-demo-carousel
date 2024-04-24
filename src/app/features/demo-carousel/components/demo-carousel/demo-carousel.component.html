@@ -1,18 +1,66 @@
-@if (slides().length) {
-  <adc-carousel [autoShift]="true" [autoShiftIntervalSec]="10" [thresholdPercentage]="20">
-    @for (slide of slides(); track slide) {
+@if (banners().length) {
+  <adc-carousel
+    [autoShift]="autoShift()"
+    [autoShiftDirection]="autoShiftDirection()"
+    [autoShiftIntervalSec]="autoShiftIntervalSec()"
+    [thresholdPercentage]="thresholdPercentage()"
+  >
+    @for (banner of banners(); track banner) {
       <adc-carousel-slide>
         <adc-banner
-          [backgroundImage]="slide.backgroundImage"
-          [title]="slide.title"
-          [text]="slide.text"
-          [frontImage]="slide.frontImage"
-          [link]="slide.link"
+          [backgroundImage]="banner.backgroundImage"
+          [title]="banner.title"
+          [text]="banner.text"
+          [frontImage]="banner.frontImage"
+          [link]="banner.link"
+          [heightPixels]="bannerHeightPixels()"
         ></adc-banner>
       </adc-carousel-slide>
     }
   </adc-carousel>
 } @else {
-  <!-- TODO: Don't use pixel units -->
-  <div class="loader-block" style="height: 400px"></div>
+  <div class="loader-block" [style.height]="bannerHeightRem() + 'rem'"></div>
 }
+
+<fieldset class="carousel-config">
+  <legend>Carousel configuration</legend>
+
+  <p>
+    <label for="autoShift">Auto shift</label>
+    <input id="autoShift" type="checkbox" [formControl]="autoShiftControl" />
+  </p>
+
+  <p>
+    <label for="autoShiftIntervalSec">Auto shift interval (seconds)</label>
+    <input
+      id="autoShiftIntervalSec"
+      type="number"
+      [min]="0"
+      [formControl]="autoShiftIntervalSecControl"
+    />
+  </p>
+
+  <p>
+    <label for="thresholdPercentage">Threshold (%)</label>
+    <input
+      id="thresholdPercentage"
+      type="number"
+      [min]="0"
+      [formControl]="thresholdPercentageControl"
+    />
+  </p>
+
+  <fieldset>
+    <legend>Auto shift direction</legend>
+
+    <p>
+      <input id="left" type="radio" value="left" [formControl]="autoShiftDirectionControl" />
+      <label for="left">Left</label>
+    </p>
+
+    <p>
+      <input id="right" type="radio" value="right" [formControl]="autoShiftDirectionControl" />
+      <label for="right">Right</label>
+    </p>
+  </fieldset>
+</fieldset>

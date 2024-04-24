@@ -2,11 +2,7 @@
 
 @import 'variables';
 
-@function strip-unit($num) {
-  @return math.div($num, $num * 0 + 1);
-}
-
 @function px-to-rem($px-value) {
-  $remValue: math.div($px-value, strip-unit($font-size-medium)) + rem;
+  $remValue: math.div($px-value, $font-size-default-px) + rem;
   @return $remValue;
 }

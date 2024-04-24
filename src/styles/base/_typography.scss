@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'functions';
 
 @font-face {
   font-family: localRubik;
@@ -13,6 +14,6 @@
 
 html {
   font-family: localRubik, sans-serif;
-  font-size: $font-size-medium;
+  font-size: px-to-rem($font-size-default-px);
   font-weight: 400;
 }

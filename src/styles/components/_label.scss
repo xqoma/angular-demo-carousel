@@ -1,0 +1,11 @@
+@import 'functions';
+
+label {
+  &:has(+ *) {
+    padding-right: px-to-rem(8);
+  }
+
+  * + & {
+    padding-left: px-to-rem(8);
+  }
+}
