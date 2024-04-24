@@ -23,50 +23,73 @@
   <div class="loader-block" [style.height]="bannerHeightRem() + 'rem'"></div>
 }
 
-<fieldset class="carousel-config">
-  <legend>Carousel configuration</legend>
-
-  <p>
-    <label for="autoShift">Auto shift</label>
-    <input id="autoShift" type="checkbox" [formControl]="autoShiftControl" />
-  </p>
-
-  <p>
-    <label for="autoShiftIntervalSec">Auto shift interval (seconds)</label>
-    <input
-      id="autoShiftIntervalSec"
-      type="number"
-      [min]="0"
-      [formControl]="autoShiftIntervalSecControl"
-    />
-  </p>
-
-  <p>
-    <label for="thresholdPercentage">Threshold (%)</label>
-    <input
-      id="thresholdPercentage"
-      type="number"
-      [min]="0"
-      [formControl]="thresholdPercentageControl"
-    />
-  </p>
-
-  <p>
-    <label for="dragFps">Dragging FPS</label>
-    <input id="dragFps" type="number" [min]="0" [formControl]="dragFpsControl" />
-  </p>
+<div class="carousel-config">
+  <h2 class="config-title">Carousel configuration</h2>
 
   <fieldset>
-    <legend>Auto shift direction</legend>
+    <div class="control-row">
+      <div class="control-col">
+        <label for="autoShift">Auto shift</label>
+      </div>
 
-    <p>
-      <input id="left" type="radio" value="left" [formControl]="autoShiftDirectionControl" />
-      <label for="left">Left</label>
-    </p>
+      <div class="control-col">
+        <input id="autoShift" type="checkbox" [formControl]="autoShiftControl" />
+      </div>
+    </div>
 
-    <p>
-      <input id="right" type="radio" value="right" [formControl]="autoShiftDirectionControl" />
-      <label for="right">Right</label>
-    </p>
+    <div class="control-row">
+      <div class="control-col">
+        <label for="autoShiftIntervalSec">Auto shift interval (seconds)</label>
+      </div>
+      <div class="control-col">
+        <input
+          id="autoShiftIntervalSec"
+          type="number"
+          [min]="0"
+          [formControl]="autoShiftIntervalSecControl"
+        />
+      </div>
+    </div>
+
+    <div class="control-row">
+      <div class="control-col">
+        <label for="thresholdPercentage">Threshold (%)</label>
+      </div>
+      <div class="control-col">
+        <input
+          id="thresholdPercentage"
+          type="number"
+          [min]="0"
+          [formControl]="thresholdPercentageControl"
+        />
+      </div>
+    </div>
+
+    <div class="control-row">
+      <div class="control-col">
+        <label for="dragFps">Dragging FPS</label>
+      </div>
+      <div class="control-col">
+        <input id="dragFps" type="number" [min]="0" [formControl]="dragFpsControl" />
+      </div>
+    </div>
+
+    <div class="control-row">
+      <div class="control-col">
+        <label>Auto shift direction</label>
+      </div>
+
+      <div class="control-col">
+        <div class="radio-option">
+          <input id="left" type="radio" value="left" [formControl]="autoShiftDirectionControl" />
+          <label for="left">Left</label>
+        </div>
+
+        <div class="radio-option">
+          <input id="right" type="radio" value="right" [formControl]="autoShiftDirectionControl" />
+          <label for="right">Right</label>
+        </div>
+      </div>
+    </div>
   </fieldset>
-</fieldset>
+</div>
